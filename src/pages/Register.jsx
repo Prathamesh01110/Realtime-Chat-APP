@@ -5,6 +5,7 @@ import { auth, db, storage , googleProvider } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc,getDoc  } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
+import ReactImage from '../img/React.png';
 
 
 const Register = () => {
@@ -112,25 +113,33 @@ const Register = () => {
   };
 
 
+
+//Styles
+
+ 
+  
+
+
+
   return (
-    <div className="formContainer">
-      <div className="formWrapper">
-        <span className="logo">Elite Chat</span>
-        <span className="title">Register</span>
-        <form onSubmit={handleSubmit}>
-          <input required type="text"  onChange={e => setDisplayName(e.target.value)} placeholder="display name" />
-          <input required type="email" onChange={e => setEmail(e.target.value)} placeholder="email" />
-          <input required type="password" onChange={e => setPassword(e.target.value)} placeholder="password" />
+    <div style={formContainer}>
+      <div style={formWrapper}>
+        <span style={logo}>Elite Chat</span>
+        <span style={title}>Register</span>
+        <form style={form} onSubmit={handleSubmit}>
+          <input required type="text" style={input} onChange={e => setDisplayName(e.target.value)} placeholder="display name" />
+          <input required type="email" style={input} onChange={e => setEmail(e.target.value)} placeholder="email" />
+          <input required type="password" style={input} onChange={e => setPassword(e.target.value)} placeholder="password" />
           <input required style={{ display: "none" }} type="file" id="file" />
-          <label htmlFor="file">
-            <img src={Add} alt="" />
+          <label style={label} htmlFor="file">
+            <img style={labelImg} src={Add} alt="" />
             <span>Add an avatar</span>
           </label>
-          <button disabled={loading}>Sign up</button>
+          <button style={button} disabled={loading}>Sign up</button>
           {loading && "Uploading and compressing the image please wait..."}
           {err && <span>Something went wrong</span>}
         </form>
-        <p>
+        <p style={paragraph}>
           You do have an account? <Link to="/login">Login</Link>
         </p>
         <button onClick={handleGoogleSignIn}><img width="24" height="24" src="https://img.icons8.com/fluency/48/google-logo.png" alt="google-logo"/></button>
@@ -140,3 +149,78 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+
+
+//Styles
+const formContainer = {
+  backgroundImage: `url(${ReactImage})`,
+  height: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+const formWrapper = {
+  backgroundColor: 'white',
+  padding: '20px 60px',
+  borderRadius: '10px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '10px',
+  alignItems: 'center',
+};
+
+const logo = {
+  color: '#5d5b8d',
+  fontWeight: 'bold',
+  fontSize: '24px',
+};
+
+const title = {
+  color: '#5d5b8d',
+  fontSize: '12px',
+};
+
+const form = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '15px',
+};
+
+const input = {
+  padding: '15px',
+  border: 'none',
+  width: '250px',
+  borderBottom: '1px solid #a7bcff',
+};
+
+const button = {
+  backgroundColor: '#7b96ec',
+  color: 'white',
+  padding: '10px',
+  fontWeight: 'bold',
+  border: 'none',
+  cursor: 'pointer',
+};
+
+const label = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
+  color: '#8da4f1',
+  fontSize: '12px',
+  cursor: 'pointer',
+};
+
+const labelImg = {
+  width: '32px',
+};
+
+const paragraph = {
+  color: '#5d5b8d',
+  fontSize: '12px',
+  marginTop: '10px',
+};
